@@ -11,7 +11,75 @@
     </style>
 </head>
 <body>
-    <main class="container fluid col-8 mt-4"></main>
+    <main class="container fluid col-8 mt-4">
+        <!-- Input -->
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="">Tambakan kriteria</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="kriteria" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button id="btn-kriteria" class="btn btn-primary btn-sm input-group-text">Tambah</button>
+                        </div>
+                        <small id="alias-kriteria"></small>
+                      </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Tambakan Sub-kriteria</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="sub-kriteria" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button id="btn-sub-kriteria" class="btn btn-primary btn-sm input-group-text">Tambah</button>
+                        </div>
+                        <small id="alias-subkriteria"></small>
+                      </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button id="load-cache" class="btn btn-sm btn-outline-info" type="button">Load cache</button>
+                <button id="save-cache" class="btn btn-sm btn-outline-info" type="button">Save cache</button>
+                <button id="input-bobot" class="btn btn-sm btn-outline-primary" type="button">Masukkan Bobot</button>
+            </div>
+        </div>
+        
+        <!-- Display Kriteria Sementara -->
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h4>Kriteria</h4>
+                <ol id="list-kriteria"></ol>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h4>Sub Kriteria</h4>
+                <ol id="list-subkriteria">
+
+                </ol>
+            </div>
+
+        </div>
+
+        <!-- Masukkan Bobot Kriteria dan Sub kriteria -->
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h4>Bobot Kriteria</h4>
+                <ol id="bobot-kriteria"></ol>
+            </div>
+            <div id="bobot-subkriteria" class="col-sm-12 col-md-6">
+                <h4>Bobot Sub Kriteria</h4>
+                
+            </div>
+
+            <div class="col-12 mt-5">
+                <br>
+                <br>
+                <button class="btn btn-outline-primary" id="proses">Proses</button>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+    </main>
     <script src="./ahp.js"></script>
     <script src="./app.js"></script>
 </body>

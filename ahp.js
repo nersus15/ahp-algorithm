@@ -74,6 +74,12 @@ function buatMatrixPerbandingan(kriteria, perandingan = null){
     });
     this.matrixPerbandingan = Object.assign({}, temp);
 
+    // Fiexed matrixPerbandingan
+    Object.keys(this.matrixPerbandingan.jumlah).forEach(k => {
+        this.matrixPerbandingan.jumlah[k] = parseFloat(this.matrixPerbandingan.jumlah[k].toFixed(4))
+    });
+
+
     this.buatMatrixEigen = function(){
         Object.keys(this.matrixPerbandingan).forEach(row => {
             if(row == 'jumlah') return;
@@ -117,10 +123,14 @@ function buatMatrixPerbandingan(kriteria, perandingan = null){
                     this.matrixKonsistensi[row]['jumlah'] = parseFloat((this.matrixKonsistensi[row][column]).toFixed(4));
                 
             });
-            if(!this.matrixKonsistensi[row]['rasio'])
-                this.matrixKonsistensi[row]['rasio'] = parseFloat((this.matrixKonsistensi[row]['jumlah'] / this.matrixEigen[row]['vector eigen']).toFixed(4));
-            if(this.lambdaMax == null) this.lambdaMax = this.matrixKonsistensi[row]['rasio'];
+            if(!this.matrixKonsistensi[row]['rasio']){
+                console.log(this.matrixPerbandingan['jumlah'][row] + ' * ' + this.matrixEigen[row]['vector eigen']);
+                this.matrixKonsistensi[row]['rasio'] = parseFloat((this.matrixPerbandingan['jumlah'][row] * this.matrixEigen[row]['vector eigen']).toFixed(4));
+            }
+            if(this.lambdaMax == null) 0;
             this.lambdaMax = parseFloat((this.matrixKonsistensi[row]['rasio'] + this.lambdaMax).toFixed(4));
+            console.log("LambdaMax ===>", this.lambdaMax);
+
         });
         return this;
     };
@@ -130,7 +140,7 @@ function buatMatrixPerbandingan(kriteria, perandingan = null){
             console.warn("Anda melewati proses untuk menghitung konsistensi");
             return;
         }
-        if(this.lambdaMax != null) this.lambdaMax = parseFloat((this.lambdaMax/columns.length).toFixed(4));
+        // if(this.lambdaMax != null) parseFloat(this.lambdaMax.toFixed(4));
         this.consistencyIndex = parseFloat(((this.lambdaMax - columns.length)/(columns.length - 1)).toFixed(4));
         this.consistencyRasio = parseFloat((this.consistencyIndex / RI[columns.length - 1]).toFixed(4));
         
@@ -152,7 +162,17 @@ function buatMatrixPerbandingan(kriteria, perandingan = null){
         sortable.sort(function(a, b) {
             return b.bobot - a.bobot;
         });
-        return this;
+        return {
+            matrixEigen: this.matrixEigen,
+            matrixPerbandingan: this.matrixPerbandingan,
+            matrixKonsistensi: this.matrixKonsistensi,
+            eigenMaximum: this.eigenMaximum,
+            consistencyIndex: this.consistencyIndex,
+            consistencyRasio: this.consistencyRasio,
+            lambdaMax: this.lambdaMax,
+            kesimpulan: this.kesimpulan,
+            RI: RI,
+        };
     }
     return this;
 }
