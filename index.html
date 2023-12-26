@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <style>
     </style>
 </head>
+
 <body>
     <main class="container fluid col-8 mt-4">
         <!-- Input -->
@@ -23,7 +25,7 @@
                             <button id="btn-kriteria" class="btn btn-primary btn-sm input-group-text">Tambah</button>
                         </div>
                         <small id="alias-kriteria"></small>
-                      </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -31,10 +33,11 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="sub-kriteria" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button id="btn-sub-kriteria" class="btn btn-primary btn-sm input-group-text">Tambah</button>
+                            <button id="btn-sub-kriteria"
+                                class="btn btn-primary btn-sm input-group-text">Tambah</button>
                         </div>
                         <small id="alias-subkriteria"></small>
-                      </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12">
@@ -43,7 +46,7 @@
                 <button id="input-bobot" class="btn btn-sm btn-outline-primary" type="button">Masukkan Bobot</button>
             </div>
         </div>
-        
+
         <!-- Display Kriteria Sementara -->
         <div class="row">
             <div class="col-sm-12 col-md-6">
@@ -67,7 +70,7 @@
             </div>
             <div id="bobot-subkriteria" class="col-sm-12 col-md-6">
                 <h4>Bobot Sub Kriteria</h4>
-                
+
             </div>
 
             <div class="col-12 mt-5">
@@ -81,6 +84,343 @@
         <hr>
     </main>
     <script src="./ahp.js"></script>
-    <script src="./app.js"></script>
+    <!-- <script src="./app.js"></script> -->
+    <script>
+        $(document).ready(function () {
+            var data = {
+                'kriteria': {
+                    'K1-K1': 1,
+                    'K1-K2': 3,
+                    'K1-K3': 2,
+                    'K1-K4': 3,
+                    'K1-K5': 2,
+                    'K1-K6': 3,
+                    'K1-K7': 3,
+                    'K1-K8': 5,
+
+                    'K2-K1': 1/3,
+                    'K2-K2': 1,
+                    'K2-K3': 2,
+                    'K2-K4': 2,
+                    'K2-K5': 2,
+                    'K2-K6': 3,
+                    'K2-K7': 3,
+                    'K2-K8': 3,
+
+                    'K3-K1': 1/2,
+                    'K3-K2': 1/2,
+                    'K3-K3': 1,
+                    'K3-K4': 2,
+                    'K3-K5': 2,
+                    'K3-K6': 2,
+                    'K3-K7': 3,
+                    'K3-K8': 3,
+
+                    'K4-K1': 1/3,
+                    'K4-K2': 1/2,
+                    'K4-K3': 1/2,
+                    'K4-K4': 1,
+                    'K4-K5': 2,
+                    'K4-K6': 3,
+                    'K4-K7': 2,
+                    'K4-K8': 2,
+
+                    'K5-K1': 1/2,
+                    'K5-K2': 1/2,
+                    'K5-K3': 1/2,
+                    'K5-K4': 1/2,
+                    'K5-K5': 1,
+                    'K5-K6': 3,
+                    'K5-K7': 2,
+                    'K5-K8': 2,
+
+                    'K6-K1': 1/3,
+                    'K6-K2': 1/3,
+                    'K6-K3': 1/2,
+                    'K6-K4': 1/3,
+                    'K6-K5': 1/3,
+                    'K6-K6': 1,
+                    'K6-K7': 2,
+                    'K6-K8': 2,
+
+                    'K7-K1': 1/3,
+                    'K7-K2': 1/3,
+                    'K7-K3': 1/3,
+                    'K7-K4': 1/2,
+                    'K7-K5': 1/2,
+                    'K7-K6': 1/2,
+                    'K7-K7': 1,
+                    'K7-K8': 2,
+
+                    'K8-K1': 1/5,
+                    'K8-K2': 1/3,
+                    'K8-K3': 1/3,
+                    'K8-K4': 1/2,
+                    'K8-K5': 1/2,
+                    'K8-K6': 1/2,
+                    'K8-K7': 1/2,
+                    'K8-K8': 1,
+                },
+                'subkriteria': {
+                    K1: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 3,
+                        'SK1-SK3': 5,
+                        'SK1-SK4': 7,
+                        'SK1-SK5': 9,
+
+                        'SK2-SK1': 1/3,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 3,
+                        'SK2-SK5': 5,
+
+                        'SK3-SK1': 1/5,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 3,
+                        'SK3-SK5': 5,
+
+                        'SK4-SK1': 1/7,
+                        'SK4-SK2': 1/3,
+                        'SK4-SK3': 1/3,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 2,
+
+                        'SK5-SK1': 1/9,
+                        'SK5-SK2': 1/5,
+                        'SK5-SK3': 1/5,
+                        'SK5-SK4': 1/2,
+                        'SK5-SK5': 1,
+                    },
+                    K2: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 3,
+                        'SK1-SK3': 2,
+                        'SK1-SK4': 4,
+                        'SK1-SK5': 9,
+
+                        'SK2-SK1': 1/3,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 3,
+                        'SK2-SK5': 7,
+
+                        'SK3-SK1': 1/2,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 3,
+                        'SK3-SK5': 7,
+
+                        'SK4-SK1': 1/4,
+                        'SK4-SK2': 1/3,
+                        'SK4-SK3': 1/3,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 3,
+
+                        'SK5-SK1': 1/5,
+                        'SK5-SK2': 1/7,
+                        'SK5-SK3': 1/4,
+                        'SK5-SK4': 1/3,
+                        'SK5-SK5': 1,
+                    },
+                    K3: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 2,
+                        'SK1-SK3': 3,
+                        'SK1-SK4': 5,
+                        'SK1-SK5': 4,
+
+                        'SK2-SK1': 1/2,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 5,
+                        'SK2-SK5': 4,
+
+                        'SK3-SK1': 1/3,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 2,
+                        'SK3-SK5': 5,
+
+                        'SK4-SK1': 1/5,
+                        'SK4-SK2': 1/5,
+                        'SK4-SK3': 1/2,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 3,
+
+                        'SK5-SK1': 1/4,
+                        'SK5-SK2': 1/4,
+                        'SK5-SK3': 1/5,
+                        'SK5-SK4': 1/3,
+                        'SK5-SK5': 1,
+                    },
+                    K4: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 2,
+                        'SK1-SK3': 3,
+                        'SK1-SK4': 5,
+                        'SK1-SK5': 7,
+
+                        'SK2-SK1': 1/2,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 4,
+                        'SK2-SK4': 3,
+                        'SK2-SK5': 5,
+
+                        'SK3-SK1': 1/3,
+                        'SK3-SK2': 1/4,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 2,
+                        'SK3-SK5': 4,
+
+                        'SK4-SK1': 1/5,
+                        'SK4-SK2': 1/3,
+                        'SK4-SK3': 1/2,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 5,
+
+                        'SK5-SK1': 1/7,
+                        'SK5-SK2': 1/5,
+                        'SK5-SK3': 1/4,
+                        'SK5-SK4': 1/5,
+                        'SK5-SK5': 1,
+                    },
+                    K5: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 2,
+                        'SK1-SK3': 5,
+                        'SK1-SK4': 4,
+                        'SK1-SK5': 7,
+
+                        'SK2-SK1': 1/2,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 3,
+                        'SK2-SK5': 5,
+
+                        'SK3-SK1': 1/5,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 2,
+                        'SK3-SK5': 4,
+
+                        'SK4-SK1': 1/4,
+                        'SK4-SK2': 1/3,
+                        'SK4-SK3': 1/2,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 3,
+
+                        'SK5-SK1': 1/7,
+                        'SK5-SK2': 1/5,
+                        'SK5-SK3': 1/4,
+                        'SK5-SK4': 1/3,
+                        'SK5-SK5': 1,
+                    },
+                    K6: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 2,
+                        'SK1-SK3': 4,
+                        'SK1-SK4': 5,
+                        'SK1-SK5': 7,
+
+                        'SK2-SK1': 1/2,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 4,
+                        'SK2-SK5': 5,
+
+                        'SK3-SK1': 1/4,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 2,
+                        'SK3-SK5': 4,
+
+                        'SK4-SK1': 1/5,
+                        'SK4-SK2': 1/4,
+                        'SK4-SK3': 1/2,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 3,
+
+                        'SK5-SK1': 1/7,
+                        'SK5-SK2': 1/5,
+                        'SK5-SK3': 1/4,
+                        'SK5-SK4': 1/3,
+                        'SK5-SK5': 1,
+                    },
+                    K7: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 2,
+                        'SK1-SK3': 3,
+                        'SK1-SK4': 5,
+                        'SK1-SK5': 7,
+
+                        'SK2-SK1': 1/2,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 3,
+                        'SK2-SK5': 2,
+
+                        'SK3-SK1': 1/3,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 2,
+                        'SK3-SK5': 4,
+
+                        'SK4-SK1': 1/5,
+                        'SK4-SK2': 1/3,
+                        'SK4-SK3': 1/2,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 2,
+
+                        'SK5-SK1': 1/7,
+                        'SK5-SK2': 1/2,
+                        'SK5-SK3': 1/4,
+                        'SK5-SK4': 1/2,
+                        'SK5-SK5': 1,
+                    },
+                    K8: {
+                        'SK1-SK1': 1,
+                        'SK1-SK2': 2,
+                        'SK1-SK3': 3,
+                        'SK1-SK4': 2,
+                        'SK1-SK5': 7,
+
+                        'SK2-SK1': 1/2,
+                        'SK2-SK2': 1,
+                        'SK2-SK3': 2,
+                        'SK2-SK4': 3,
+                        'SK2-SK5': 4,
+
+                        'SK3-SK1': 1/3,
+                        'SK3-SK2': 1/2,
+                        'SK3-SK3': 1,
+                        'SK3-SK4': 2,
+                        'SK3-SK5': 5,
+
+                        'SK4-SK1': 1/2,
+                        'SK4-SK2': 1/3,
+                        'SK4-SK3': 1/2,
+                        'SK4-SK4': 1,
+                        'SK4-SK5': 2,
+
+                        'SK5-SK1': 1/7,
+                        'SK5-SK2': 1/4,
+                        'SK5-SK3': 1/5,
+                        'SK5-SK4': 1/2,
+                        'SK5-SK5': 1,
+                    },
+
+                },
+                'alternatif': [
+                    'A1', 'A2', 'A3', 'A4', 'A5'
+                ],
+            };
+            var ahp = Ahp(data);
+            window.hasil = ahp.proses();
+            console.log(window.hasil);
+        });
+    </script>
 </body>
+
 </html>
